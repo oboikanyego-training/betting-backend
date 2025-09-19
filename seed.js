@@ -6,7 +6,7 @@ const Match = mongoose.model('Match', new mongoose.Schema({
   status: String
 }));
 
-mongoose.connect('mongodb+srv://Bk:nRXAc9UohBD5vA7R@chat-app.bn1ewik.mongodb.net/?retryWrites=true&w=majority&appName=Chat-app').then(async () => {
+mongoose.connect(process.env.MONGO_URI).then(async () => {
   await Match.deleteMany({});
   await Match.insertMany([
     { homeTeam: 'Team A', awayTeam: 'Team B', startAt: new Date(Date.now() + 3600000), status: 'upcoming' },
